@@ -1,0 +1,62 @@
+Problem:https://www.geeksforgeeks.org/problems/anagram-1587115620/1
+Code:
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+class Solution {
+  public:
+    // Function is to check whether two strings are anagram of each other or not.
+    bool areAnagrams(string& s1, string& s2) {
+        unordered_map<char,int>ans;
+        int n=s1.length();
+        int m = s2.length();
+        if(n != m){
+            return false;
+        }
+        for(int i=0;i<n;i++){
+            ans[s1[i]]++;
+        }
+        
+        for(int i=0;i<m;i++){
+            if(ans.find(s2[i]) != ans.end()){
+                ans[s2[i]] -= 1;
+            }else{
+                return false;
+            }
+        }
+        
+        for(auto i : ans){
+            if(i.second != 0){
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+//{ Driver Code Starts.
+
+int main() {
+
+    int t;
+
+    cin >> t;
+
+    while (t--) {
+        string c, d;
+
+        cin >> c >> d;
+        Solution obj;
+        if (obj.areAnagrams(c, d))
+            cout << "true" << endl;
+        else
+            cout << "false" << endl;
+        cout << "~" << endl;
+    }
+}
+
+// } Driver Code Ends
+
